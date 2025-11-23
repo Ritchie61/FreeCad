@@ -111,13 +111,13 @@ AboutDialog::AboutDialog(QWidget* parent)
     layout()->setSizeConstraint(QLayout::SetFixedSize);
     QRect rect = QApplication::primaryScreen()->availableGeometry();
 
-    // See if we have a custom About screen image set
-    QPixmap image = aboutImage();
-
-    // Fallback to the splashscreen image
-    if (image.isNull()) {
-        image = SplashScreen::splashImage();
-    }
+    QPixmap AboutDialog::aboutImage() const
+{
+    // Load KonamCad-branded About screen image from the icons resource path
+    QPixmap about_image;
+    about_image.load(":/icons/konamcad_about.png", "PNG");
+    return about_image;
+}
 
     // Make sure the image is not too big
     int denom = 2;
